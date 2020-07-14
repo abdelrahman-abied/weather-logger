@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Weather Logger</string>
+    <string name="wait_until_load_current_forecast">Wait until load current forecast</string>
+    <string name="more_details">More Details</string>
+    <string name="temperature">Temperature:</string>
+    <string name="date">Date:</string>
+</resources>
