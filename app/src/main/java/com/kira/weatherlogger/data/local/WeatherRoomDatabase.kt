@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(WeatherData::class), version = 5, exportSchema = false)
+@Database(entities = arrayOf(WeatherData::class), version = 6, exportSchema = false)
 public abstract class WeatherRoomDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
@@ -32,8 +32,8 @@ public abstract class WeatherRoomDatabase : RoomDatabase() {
                 )
                         // Wipes and rebuilds instead of migrating if no Migration object.
                         // Migration is not part of this codelab.
-                        .fallbackToDestructiveMigration()
-                        .addCallback(WeatherDatabaseCallback(scope))
+//                        .fallbackToDestructiveMigration()
+//                        .addCallback(WeatherDatabaseCallback(scope))
                         .fallbackToDestructiveMigration()
                         .build()
                 INSTANCE = instance

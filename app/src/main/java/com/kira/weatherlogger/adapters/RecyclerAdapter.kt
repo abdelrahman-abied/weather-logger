@@ -1,19 +1,22 @@
 package com.kira.weatherlogger.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.kira.weatherforecast.api.DailyForecast
+import com.kira.weatherlogger.navigator.AppNavigator
 import com.kira.weatherlogger.R
 import com.kira.weatherlogger.data.local.WeatherData
 import com.kira.weatherlogger.utils.formatTempForDisplay
 import java.text.SimpleDateFormat
 import java.util.*
 
-private val DATE_FORMAT = SimpleDateFormat("MM-d d-yyyy")
+@SuppressLint("SimpleDateFormat")
+private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 
 class RecyclerAdapter(private val context: Context?, private var list: List<WeatherData>) :
         RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
@@ -35,25 +38,26 @@ class RecyclerAdapter(private val context: Context?, private var list: List<Weat
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-                private var pos: Int = 0
+        private var pos: Int = 0
         lateinit var current: WeatherData
         private val tempText: TextView = itemView.findViewById(R.id.tempText)
         private val dateText: TextView = itemView.findViewById(R.id.dateText)
 
         fun setData(current: WeatherData, position: Int) {
-            tempText.text = "Temperature: " +formatTempForDisplay(current.temp)
+            tempText.text = "Temperature: " + formatTempForDisplay(current.temp)
 //            dateText.text = "Date: "+ current.date
-
-     dateText.text = "Date: "+ DATE_FORMAT.format(Date((current.date).toLong()))
-//            this.pos = position
-//            this.current = current
+            Log.d("T", "abdo " + position + " " + current.date)
+            dateText.text = "Date: " + DATE_FORMAT.format(Date((current.date).toLong()))
+            this.pos = position
+            this.current = current
         }
 
         fun setListeners() {
 
             itemView.setOnClickListener {
-//                val myCommunicator = context as MyCommunicator
-//                myCommunicator.displayDetails(current.title, current.description)
+                val myCommunicator = context as AppNavigator
+                myCommunicator.displayDetails(current.temp.toString(), current.min.toString(),
+                        current.max.toString(), current.date)
             }
         }
     }

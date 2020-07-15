@@ -1,4 +1,4 @@
-package com.kira.weatherlogger
+package com.kira.weatherlogger.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

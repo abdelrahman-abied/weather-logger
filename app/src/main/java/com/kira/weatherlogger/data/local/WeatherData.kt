@@ -8,5 +8,7 @@ import androidx.room.PrimaryKey
 data class WeatherData(
         @PrimaryKey(autoGenerate = true) var id: Int = 0,
         @ColumnInfo(name = "temp") val temp: Float,
+        @ColumnInfo(name = "max") val max: Float,
+        @ColumnInfo(name = "min") val min: Float,
         @ColumnInfo(name = "date") val date: String
 )
